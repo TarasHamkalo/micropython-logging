@@ -1,5 +1,6 @@
-from boot import APPENDERS_DEST
 from logging.appenders.appender import Appender
+
+from boot import APPENDERS_DEST
 
 class Appenders(Appender):
 
