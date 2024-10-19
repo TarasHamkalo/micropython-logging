@@ -42,11 +42,11 @@ class PlainFileAppender(Appender):
   def _fit_new_log(self):
     old_logs = self._retrieve_old_logs()
     if len(old_logs) >= self.max_concurrent_files:
-      # print(old_logs, file=sys.stderr, flush=True)
-      for log in old_logs[:self.max_concurrent_files - 1]:
+      for log in old_logs[self.max_concurrent_files - 1:]:
         os.remove(log)
 
   def _retrieve_old_logs(self):
     return sorted(
-      [f for f in os.listdir('.') if f.startswith(self.fname) and f.endswith(self.fext)]
+      [f for f in os.listdir('.') if f.startswith(self.fname) and f.endswith(self.fext)],
+      reverse=True
     )
